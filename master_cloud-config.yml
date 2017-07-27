@@ -140,33 +140,33 @@ write_files:
       wait-for-docker
       exec /opt/rancher/bin/run_after_docker
 
-  - path: /etc/ssh/sshd_config
-    permissions: "0644"
-    owner: root:root
-    content: |
-      Port 16777
-      UsePrivilegeSeparation yes
-      ClientAliveInterval 180
-      TCPKeepAlive yes
-      KeyRegenerationInterval 3600
-      ServerKeyBits 1024
-      SyslogFacility AUTHPRIV
-      LogLevel INFO
-      LoginGraceTime 120
-      PermitRootLogin no
-      StrictModes yes
-      IgnoreRhosts yes
-      RhostsRSAAuthentication no
-      HostbasedAuthentication no
-      PermitEmptyPasswords no
-      PasswordAuthentication no
-      ChallengeResponseAuthentication no
-      RSAAuthentication yes
-      PubkeyAuthentication yes
-      PrintLastLog yes
-      AcceptEnv *
-      UseDNS no
-      UsePAM yes
+  # - path: /etc/ssh/sshd_config
+  #   permissions: "0644"
+  #   owner: root:root
+  #   content: |
+  #     Port 16777
+  #     UsePrivilegeSeparation yes
+  #     ClientAliveInterval 180
+  #     TCPKeepAlive yes
+  #     KeyRegenerationInterval 3600
+  #     ServerKeyBits 1024
+  #     SyslogFacility AUTHPRIV
+  #     LogLevel INFO
+  #     LoginGraceTime 120
+  #     PermitRootLogin no
+  #     StrictModes yes
+  #     IgnoreRhosts yes
+  #     RhostsRSAAuthentication no
+  #     HostbasedAuthentication no
+  #     PermitEmptyPasswords no
+  #     PasswordAuthentication no
+  #     ChallengeResponseAuthentication no
+  #     RSAAuthentication yes
+  #     PubkeyAuthentication yes
+  #     PrintLastLog yes
+  #     AcceptEnv *
+  #     UseDNS no
+  #     UsePAM yes
 
   - path: "/etc/fuse.conf"
     permissions: "0640"
