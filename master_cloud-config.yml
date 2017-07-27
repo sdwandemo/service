@@ -24,8 +24,8 @@ rancher:
       - 8.8.4.4
 
   # Apparently can only be used in the same named block in service definition
-  environment:
-    NGINX_FILES_PATH: "/opt/nginx"
+  # environment:
+  #   NGINX_FILES_PATH: "/opt/nginx"
 
   services:
 
@@ -72,39 +72,32 @@ rancher:
     teleport:
       image: voobscout/viptela:teleport
       command: 'teleport start --roles=proxy,auth,node --config /etc/teleport.yml'
-      # hostname: teleport
-      # domainname: sdwan-demo.com
       restart: always
-      net: host
       volumes:
         # - /mnt/config/teleport:/var/lib/teleport
         - /opt/config/teleport.yml:/etc/teleport.yml
-      # environment:
-      #   VIRTUAL_HOST: teleport.njk.li
-      #   VIRTUAL_PROTO: https
-      #   VIRTUAL_PORT: 3080
-      #   LETSENCRYPT_HOST: teleport.njk.li
-      #   LETSENCRYPT_EMAIL: webadmin@njk.li
-      # expose:
-      #   - 3022
-      #   - 3023
-      #   - 3024
-      #   - 3025
-      #   - 3080
-      # ports:
-      #   - 3022:3022
-      #   - 3023:3023
-      #   - 3024:3024
-      #   - 3025:3025
-      #   - 3080:3080
+      ports:
+        - 3022:3022
+        - 3023:3023
+        - 3024:3024
+        - 3025:3025
+        - 3080:3080
 
-    # rancher-server:
-    #   image: rancher/server
-    #   restart: unless-stopped
-    #   ports:
-    #     - 8080:8080
-    #   volumes:
-    #     - /opt/config_store/rancher/mysql:/var/lib/mysql
+    rancher-server:
+      image: rancher/server
+      restart: unless-stopped
+      # ports:
+      #   - 8080:8080
+      expose:
+        - 8080
+      volumes:
+        - /opt/rancher_mysql:/var/lib/mysql
+      environment:
+        VIRTUAL_HOST: r.sdwan-demo.com
+        VIRTUAL_PROTO: http
+        VIRTUAL_PORT: 8080
+        LETSENCRYPT_HOST: sdwan-demo.com
+        LETSENCRYPT_EMAIL: webadmin@sdwan-demo.com
 
 write_files:
   - path: /opt/rancher/bin/start.sh
