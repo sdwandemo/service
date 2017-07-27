@@ -93,11 +93,11 @@ rancher:
       volumes:
         - /opt/rancher_mysql:/var/lib/mysql
       environment:
-        VIRTUAL_HOST: r.sdwan-demo.com
+        VIRTUAL_HOST: rs.sdwan-demo.com
         VIRTUAL_PROTO: http
         VIRTUAL_PORT: 8080
-        LETSENCRYPT_HOST: sdwan-demo.com
-        LETSENCRYPT_EMAIL: webadmin@sdwan-demo.com
+        LETSENCRYPT_HOST: rs.sdwan-demo.com
+        LETSENCRYPT_EMAIL: webadmin@r.sdwan-demo.com
 
 write_files:
   - path: /opt/rancher/bin/start.sh
