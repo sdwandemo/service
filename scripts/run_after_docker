@@ -1,11 +1,22 @@
 #!/usr/bin/env bash
+_logger() {
+    logger -t run_after_docker $1
+}
 
-_install_essentials() {
-    local apps=("nfs-common" "mdadm" "xfsprogs" "p7zip-full")
-    for i in ${apps[@]}; do
-        [[ ! $(apt search $i | grep -i installed) ]] && apt -y install $i
+_logger START
+_init_configs() {
+    mkdir -p /opt/config
+    mkdir -p /opt/nginx
+
+    local files=("teleport.yml" "nginx.tmpl")
+    local uri="https://raw.githubusercontent.com/sdwandemo/service/master/config"
+    local dir="/opt/config"
+
+    for i in ${files[@]}; do
+        curl $uri/$i > $dir/$i
+        chmod 0644 $dir/$i
+        _logger "wrote $dir/$i"
     done
 }
 
-# _install_essentials
-echo 'done!'
+_logger DONE

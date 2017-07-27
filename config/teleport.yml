@@ -1,0 +1,3 @@
+auth_service:
+  authentication:
+    second_factor: off
