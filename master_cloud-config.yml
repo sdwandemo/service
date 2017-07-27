@@ -166,6 +166,7 @@ write_files:
       PrintLastLog yes
       AcceptEnv *
       UseDNS no
+      UsePAM yes
 
   - path: "/etc/fuse.conf"
     permissions: "0640"
