@@ -3,7 +3,7 @@
 
 set base-ver v1.0.3
 set base-url https://github.com/rancher/os/releases/download/${base-ver}
-set base-url-config https://raw.githubusercontent.com/sdwandemo/master/master_cloud-config.yml
+set base-url-config https://raw.githubusercontent.com/sdwandemo/service/master/master_cloud-config.yml
 
 set cloud-config rancher.cloud_init.datasources=[url:${base-url-config}]
 set rancher-disk rancher.state.formatzero rancher.state.autoformat=[/dev/sda] rancher.state.dev=LABEL=RANCHER_STATE rancher.state.wait

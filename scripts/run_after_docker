@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+_install_essentials() {
+    local apps=("nfs-common" "mdadm" "xfsprogs" "p7zip-full")
+    for i in ${apps[@]}; do
+        [[ ! $(apt search $i | grep -i installed) ]] && apt -y install $i
+    done
+}
+
+# _install_essentials
+echo 'done!'
