@@ -13,10 +13,12 @@ _init_configs() {
     local dir="/opt/config"
 
     for i in ${files[@]}; do
+        rm -rf $dir/$i
         curl $uri/$i > $dir/$i
         chmod 0644 $dir/$i
         _logger "wrote $dir/$i"
     done
 }
 
+_init_configs
 _logger DONE
