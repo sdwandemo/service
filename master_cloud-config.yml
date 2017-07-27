@@ -11,7 +11,7 @@ rancher:
     dev: LABEL=RANCHER_STATE
     autoformat:
     - /dev/sda
-  modules: [kvm, kvm_intel, vhost-net, tun, autofs4]
+  modules: [kvm, kvm_intel, vhost-net, autofs4]
   docker:
     # tls: false
     engine: docker-1.13.1
@@ -78,7 +78,7 @@ rancher:
       net: host
       volumes:
         # - /mnt/config/teleport:/var/lib/teleport
-        - /opt/config/teleport.yml:/etc/teleport.yml:ro
+        - /opt/config/teleport.yml:/etc/teleport.yml
       # environment:
       #   VIRTUAL_HOST: teleport.njk.li
       #   VIRTUAL_PROTO: https
