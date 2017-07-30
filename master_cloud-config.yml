@@ -14,7 +14,7 @@ rancher:
   modules: [kvm, kvm_intel, vhost-net, autofs4]
   docker:
     # tls: false
-    engine: docker-1.12.3
+    engine: docker-1.12.6
     storage_driver: overlay2
   console: debian
   network:
@@ -86,8 +86,6 @@ rancher:
     rancher-server:
       image: rancher/server
       restart: unless-stopped
-      # ports:
-      #   - 8080:8080
       expose:
         - 8080
       volumes:
